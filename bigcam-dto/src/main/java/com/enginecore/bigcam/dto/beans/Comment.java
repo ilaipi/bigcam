@@ -1,5 +1,7 @@
 package com.enginecore.bigcam.dto.beans;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.util.Date;
 
 /**
@@ -12,9 +14,14 @@ public class Comment {
     private Integer videoId;//被评论的视频
     private Integer videoUserId;//被评论的视频的上传者
     private Integer repliedUserId;//可能是回复某人的评论。被回复的用户的ID
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date commentTime;
 
     private Integer praiseTimes;//评论被赞的次数
+    private Boolean praised;//是否评论过
+
+    private String profilePhoto;
+    private String repliedProfilePhoto;
 
     public Integer getVideoId() {
         return videoId;
@@ -78,5 +85,33 @@ public class Comment {
 
     public void setPraiseTimes(Integer praiseTimes) {
         this.praiseTimes = praiseTimes;
+    }
+
+    public Boolean getPraised() {
+        return praised;
+    }
+
+    public void setPraised(Integer praised) {
+        if (null == praised) {
+            this.praised = false;
+            return;
+        }
+        this.praised = praised > 0;
+    }
+
+    public String getProfilePhoto() {
+        return profilePhoto;
+    }
+
+    public void setProfilePhoto(String profilePhoto) {
+        this.profilePhoto = profilePhoto;
+    }
+
+    public String getRepliedProfilePhoto() {
+        return repliedProfilePhoto;
+    }
+
+    public void setRepliedProfilePhoto(String repliedProfilePhoto) {
+        this.repliedProfilePhoto = repliedProfilePhoto;
     }
 }
